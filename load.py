@@ -16,10 +16,11 @@ class MinersMate(object):
 
     def collect(self):
         self.mined += 1
+        self.update_window()
 
     def update_window(self):
         msg = "{}".format(self.mined)
-        self.count_widget.after(0, self.rate_widget.config, {"text": msg})
+        self.count_widget.after(0, self.count_widget.config, {"text": msg})
 
 
 def plugin_start():
@@ -44,11 +45,10 @@ def plugin_app(parent):
     mate.count_widget.grid(row=0, column=2, sticky=tk.E)
 
     reset_btn = tk.Button(frame, text="Reset", command=mate.reset)
-    reset_btn.grid(row=2, column=1, sticky=tk.W)
+    reset_btn.grid(row=0, column=1, sticky=tk.W)
 
-    frame.columnconfigure(2, weight=1)
+    frame.columnconfigure(1, weight=1)
 
-    this.spacer = tk.Frame(frame)
     mate.update_window()
     return frame
 
