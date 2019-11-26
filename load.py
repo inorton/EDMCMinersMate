@@ -1,7 +1,10 @@
 """
 The "Miners Mate" Plugin
 """
-import Tkinter as tk
+try:
+    import Tkinter as tk
+except ImportError:
+    import tkinter as tk
 import sys
 
 this = sys.modules[__name__]  # For holding module globals
@@ -26,6 +29,10 @@ class MinersMate(object):
 def plugin_start():
     mate = MinersMate()
     this.mate = mate
+
+
+def plugin_start3(plugindir):
+    plugin_start()
 
 
 def plugin_app(parent):
